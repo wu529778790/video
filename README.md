@@ -1,5 +1,5 @@
 # video
-
+预览页面 newbug.xyz/newvideo
 > A Vue.js project
 
 ## Build Setup

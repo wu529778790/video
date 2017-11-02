@@ -6,7 +6,7 @@ import router from './router'
 import Axios from 'axios'
 Vue.prototype.$http = Axios
 Vue.config.productionTip = false
-
+require('bulma')
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

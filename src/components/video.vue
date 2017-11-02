@@ -1,16 +1,23 @@
 <template>
   <div class="video">
-    <iframe :src="src" width="99%" height=""></iframe>
-    <div class="url_head">
-      <label for="url" class="label">请在下面输入您要播放的vip视频地址：</label><br />
-      <input type="text" v-model="url" id="url" placeholder="请再次输入您要解析的会员地址">
+    <div class="container">
+      <iframe :src="src" width="99%" height="500px;" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+      <div class="url_head">
+        <label for="url" class="title">请在下面输入您要播放的vip视频地址：</label><br />
+        <input type="text" v-model="url" id="url" placeholder="请再次输入您要解析的会员地址" class="input is-primary is-large">
+      </div>
+      <div style="padding: 10px 0;">
+        <a class="button is-primary" @click="removeUrl">清空地址栏</a>
+        <a class="button is-primary" @click="refresh">点击我刷新</a>
+      </div>
+      <label for="selected" class="title">接口选择</label>
+      <div class="select is-primary">
+        <select v-model="selected" id="selected">
+          <option v-for="option in options" :value="option.value">{{option.name}}</option>
+        </select>
+      </div>
     </div>
-    <label for="selected">接口选择</label>
-    <select v-model="selected" id="selected">
-      <option v-for="option in options" :value="option.value">{{option.name}}</option>
-    </select>
     <div class="bottom">
-      本站一切资源来源于互联网，如有侵犯您的权益，请联系管理员删除，本站不承担任何法律责任
     </div>
   </div>
 </template>
@@ -218,6 +225,12 @@ export default {
   methods: {
     player () {
       this.src = this.selected + this.url
+    },
+    removeUrl () {
+      this.url = ''
+    },
+    refresh () {
+      location.reload()
     }
   },
   created () {
@@ -237,26 +250,18 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-.video {
-  .url_head {
-    .label {
-
-    }
-    #url {
-      width: 99%;
-      padding: 5px;
-      box-sizing: border-box;
-      border: 1px solid grey;
-    }
-  }
-  #selected {
-    border: 1px solid grey;
-  }
-  .bottom {
-    padding-bottom: 10px;
-    position: absolute;
-    bottom: 0;
-  }
-}
+<style lang="scss">
+// .video {
+//   .url_head {
+//     #url {
+//       width: 99%;
+//       padding: 5px;
+//       box-sizing: border-box;
+//       border: 1px solid grey;
+//     }
+//   }
+//   #selected {
+//     border: 1px solid grey;
+//   }
+// }
 </style>
